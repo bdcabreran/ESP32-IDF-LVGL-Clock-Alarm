@@ -1,3 +1,6 @@
+| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-S2 | ESP32-S3 |
+| ----------------- | ----- | -------- | -------- | -------- | -------- |
+
 # Hello World Example
 
 Starts a FreeRTOS task to print "Hello World".
@@ -24,12 +27,10 @@ Below is short explanation of remaining files in the project folder.
 
 ```
 ├── CMakeLists.txt
-├── example_test.py            Python script used for automated example testing
+├── pytest_hello_world.py      Python script used for automated testing
 ├── main
-│   ├── CMakeLists.txt
-│   ├── component.mk           Component make file
-│   └── hello_world_main.c
-├── Makefile                   Makefile used by legacy GNU Make
+│   ├── CMakeLists.txt
+│   └── hello_world_main.c
 └── README.md                  This is the file you are currently reading
 ```
 
