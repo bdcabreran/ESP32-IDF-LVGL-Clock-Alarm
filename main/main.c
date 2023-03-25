@@ -20,6 +20,7 @@
 #include "esp_system.h"
 #include "driver/gpio.h"
 
+
 /* Littlevgl specific */
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
 #include "lvgl.h"
@@ -55,6 +56,8 @@
 static void lv_tick_task(void *arg);
 static void guiTask(void *pvParameter);
 static void create_demo_application(void);
+
+static void create_square_line_app(void);
 
 /**********************
  *   APPLICATION MAIN
@@ -148,7 +151,12 @@ static void guiTask(void *pvParameter) {
     ESP_ERROR_CHECK(esp_timer_start_periodic(periodic_timer, LV_TICK_PERIOD_MS * 1000));
 
     /* Create the demo application */
+    #if 0
     create_demo_application();
+    #else
+    create_square_line_app();
+    #endif
+
 
     while (1) {
         /* Delay 1 tick (assumes FreeRTOS tick is 10ms */
@@ -168,6 +176,11 @@ static void guiTask(void *pvParameter) {
 #endif
     vTaskDelete(NULL);
 }
+
+static void create_square_line_app(void)
+{
+}
+
 
 static void create_demo_application(void)
 {

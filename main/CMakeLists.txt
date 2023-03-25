@@ -1,13 +1,13 @@
 
 file(GLOB srcs
     "*.c"
-    "../components/square_line/*.c"
+    # "../components/lvlg/*.c"
 )
 
-set(dirs
-    "."
-    "../components/square_line"
-)
+# set(dirs
+#     "."
+#     "../components/lvgl"
+# )
 
 
 # set(files
@@ -32,8 +32,9 @@ set(dirs
 #                        INCLUDE_DIRS ${dirs})
 
                        
-idf_component_register(SRCS ${srcs}
-                       INCLUDE_DIRS ${dirs})
+# idf_component_register(SRCS ${srcs}
+#                        INCLUDE_DIRS ${dirs})
 
 
 # idf_component_register(SRCS main.c)
+idf_component_register(SRCS ${srcs})
