@@ -23,9 +23,10 @@
 /* Littlevgl specific */
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
+// #include "lvgl/examples\widgets/lv_example_widgets.h"
 
-// #include "lvgl/examples/widgets/lv_example_widgets.h"
 
+#if 1
 static void event_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -73,6 +74,7 @@ void lv_example_calendar_1(void)
 #endif
     lv_calendar_set_showed_date(calendar, 2021, 10);
 }
+#endif 
 
 
 /*********************
@@ -110,29 +112,6 @@ static void lv_tick_task(void *arg) {
     lv_tick_inc(LV_TICK_PERIOD_MS);
 }
 
-void lv_example_style_1(void)
-{
-    static lv_style_t style;
-    lv_style_init(&style);
-    lv_style_set_radius(&style, 5);
-
-    /*Make a gradient*/
-    lv_style_set_width(&style, 150);
-    lv_style_set_height(&style, LV_SIZE_CONTENT);
-
-    lv_style_set_pad_ver(&style, 20);
-    lv_style_set_pad_left(&style, 5);
-
-    lv_style_set_x(&style, lv_pct(50));
-    lv_style_set_y(&style, 80);
-
-    /*Create an object with the new style*/
-    lv_obj_t * obj = lv_obj_create(lv_scr_act());
-    lv_obj_add_style(obj, &style, 0);
-
-    lv_obj_t * label = lv_label_create(obj);
-    lv_label_set_text(label, "Hello");
-}
 
 //Creates a semaphore to handle concurrent call to lvgl stuff
 //If you wish to call *any* lvgl function from other threads/tasks
@@ -217,11 +196,10 @@ void guiTask(void *pvParameter) {
 #else
     // lv_demo_widgets();                                      
     // external_button_on_screen();
-    // keyboard_on_chip();
+    // keyboard_on_chip();  
 //    encoder_on_chip_button();
 //    task_with_rtos();
 //    task_with_rtos_semaphore();
-        // lv_example_style_1();
         lv_example_calendar_1();
 #endif
 

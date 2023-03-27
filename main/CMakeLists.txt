@@ -7,8 +7,20 @@ set(SOURCES
     # _6_task_with_rtos.c
     # _7_task_with_rtos_semaphore.c
     )
+set(inc
+    .
+)
+
+set(components
+    "lvgl_esp32_drivers"
+    "lvgl_touch"
+    "lvgl_tft"
+    "lvgl"
+    )
+
+
 idf_component_register(SRCS ${SOURCES}
-                    INCLUDE_DIRS .
-                    REQUIRES lvgl_esp32_drivers lvgl_touch lvgl_tft lvgl )
+                    INCLUDE_DIRS ${inc}
+                    REQUIRES ${components})
 
 target_compile_definitions(${COMPONENT_LIB} PRIVATE LV_CONF_INCLUDE_SIMPLE=1)
