@@ -25,6 +25,8 @@
 #include "lvgl_helpers.h"
 // #include "lvgl/examples\widgets/lv_example_widgets.h"
 
+#include "ui.h"
+
 
 #if 1
 static void event_handler(lv_event_t * e)
@@ -200,7 +202,10 @@ void guiTask(void *pvParameter) {
 //    encoder_on_chip_button();
 //    task_with_rtos();
 //    task_with_rtos_semaphore();
-        lv_example_calendar_1();
+        // lv_example_calendar_1();
+
+    ui_init();
+    
 #endif
 
     

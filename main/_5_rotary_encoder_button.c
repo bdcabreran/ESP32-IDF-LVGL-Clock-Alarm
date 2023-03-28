@@ -1,3 +1,5 @@
+
+#if 0 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -120,3 +122,5 @@ bool encoder_read_chip(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
     data->state = LV_INDEV_STATE_REL;
   return false;
 }
+
+#endif

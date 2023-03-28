@@ -1,3 +1,4 @@
+#if 0 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,3 +85,4 @@ bool keyboard_read_chip(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
     data->key = last_key;
     return false;
 }
+#endif 

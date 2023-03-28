@@ -5,6 +5,7 @@
 #include "lvgl/lvgl.h"
 #include "driver/pcnt.h"
 
+#if 0 
 
 #define IS_ESP32 1
 //#define IS_ARDUINO 1
@@ -108,3 +109,5 @@ bool encoder_read_chip(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 		data->state = LV_INDEV_STATE_REL;
     return false;
 }
+
+#endif

@@ -1,3 +1,5 @@
+
+#if 0 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,3 +57,5 @@ void task_with_rtos(void)
     chart = lv_chart_create(lv_scr_act(), NULL);
     series = lv_chart_add_series(chart, LV_COLOR_BLUE);
 }
+
+#endif

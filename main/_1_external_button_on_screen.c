@@ -1,3 +1,4 @@
+#if 0 
 #include <stdio.h>
 #include <string.h>
 #include "lvgl/lvgl.h"
@@ -75,5 +76,7 @@ static bool button_read(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * da
 		data->state =LV_INDEV_STATE_REL;
 	return false;
 }
+
+#endif
 
 
