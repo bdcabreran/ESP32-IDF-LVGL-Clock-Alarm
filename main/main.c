@@ -25,8 +25,13 @@
 #include "lvgl_helpers.h"
 // #include "lvgl/examples\widgets/lv_example_widgets.h"
 
-#include "ui.h"
+// #include "ui.h"
+#include "ClockAlarmUI.h"
+#include "glvgl.h"
+#include "clock.h"
 
+static uint32_t millis_1, millis_2;
+UI_event_t event;
 
 #if 1
 static void event_handler(lv_event_t * e)
@@ -108,11 +113,60 @@ void app_main() {
     xTaskCreatePinnedToCore(guiTask, "gui", 4096*2, NULL, 0, NULL, 1);
 }
 
-static void lv_tick_task(void *arg) {
-    (void) arg;
+static void lv_alarm_task(void *arg)
+{
+    (void)arg;
+
+    Clock_update_current_time(&ClockAlarmUI_inst.clock_inst);
+    ClockAlarmUI_update_current_time(&ClockAlarmUI_inst);
+    if (Clock_is_alarm(&ClockAlarmUI_inst.clock_inst) && ClockAlarmUI_inst.clock_inst.alarm_status == ALARM_ON)
+    {
+        event.sig = E_ALARM_NOTIF_ON;
+        ClockAlarmUI_process_event(&ClockAlarmUI_inst, &event);
+    }
+}
+
+static void lv_tick_task(void *arg)
+{
+    (void)arg;
 
     lv_tick_inc(LV_TICK_PERIOD_MS);
+
 }
+
+static void drag_event_handler(lv_event_t * e)
+{
+    lv_obj_t * obj = lv_event_get_target(e);
+
+    lv_indev_t * indev = lv_indev_get_act();
+    if(indev == NULL)  return;
+
+    lv_point_t vect;
+    lv_indev_get_vect(indev, &vect);
+
+    lv_coord_t x = lv_obj_get_x(obj) + vect.x;
+    lv_coord_t y = lv_obj_get_y(obj) + vect.y;
+    lv_obj_set_pos(obj, x, y);
+}
+
+
+/**
+ * Make an object dragable.
+ */
+void lv_example_obj_2(void)
+{
+    lv_obj_t * obj;
+    obj = lv_obj_create(lv_scr_act());
+    lv_obj_set_size(obj, 150, 100);
+    lv_obj_add_event_cb(obj, drag_event_handler, LV_EVENT_PRESSING, NULL);
+
+    lv_obj_t * label = lv_label_create(obj);
+    lv_label_set_text(label, "Drag me");
+    lv_obj_center(label);
+
+}
+
+ClockAlarmUI ClockAlarmUI_inst;
 
 
 //Creates a semaphore to handle concurrent call to lvgl stuff
@@ -177,6 +231,14 @@ void guiTask(void *pvParameter) {
     ESP_ERROR_CHECK(esp_timer_create(&periodic_timer_args, &periodic_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(periodic_timer, LV_TICK_PERIOD_MS * 1000));
 
+    const esp_timer_create_args_t periodic_timer_args_2 = {
+        .callback = &lv_alarm_task,
+        .name = "alarm_clk"
+    };
+    esp_timer_handle_t alarm_timer;
+    ESP_ERROR_CHECK(esp_timer_create(&periodic_timer_args_2, &alarm_timer));
+    ESP_ERROR_CHECK(esp_timer_start_periodic(alarm_timer, 1000 * 1000)); // every Second
+
 
 #if defined CONFIG_LVGL_TFT_DISPLAY_MONOCHROME || \
     defined CONFIG_LVGL_TFT_DISPLAY_CONTROLLER_ST7735S
@@ -204,7 +266,12 @@ void guiTask(void *pvParameter) {
 //    task_with_rtos_semaphore();
         // lv_example_calendar_1();
 
-    ui_init();
+    // ui_init();
+    // rgb_mixer_create_ui();
+    // lv_example_obj_2();
+
+
+    ClockAlarmUI_ctor(&ClockAlarmUI_inst);
     
 #endif
 

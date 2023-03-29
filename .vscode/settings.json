@@ -34,7 +34,8 @@
         "certificates.h": "c",
         "global_manager.h": "c",
         "tile_manager.h": "c",
-        "lv_example_widgets.h": "c"
+        "lv_example_widgets.h": "c",
+        "clockalarmui.h": "c"
     },
     "idf.flashType": "UART"
 }
