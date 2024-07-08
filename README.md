@@ -8,7 +8,16 @@ Here's a detailed README for your project:
 
 This project is a Clock Alarm Application designed for ESP32, featuring touch panel support and a ILI9488 480x320 LCD display. It is built using the ESP-IDF v5.4.0 framework and integrates LVGL (Light and Versatile Graphics Library) for GUI rendering. The project setup includes a Docker container with Visual Studio Code and necessary extensions for seamless development.
 
-![alt text](documentation/images/ClockAlarmUI.png)
+## Example Video and Images
+
+Watch Video : 
+
+   [![Watch the video](https://img.youtube.com/vi/msy5F0tQy0Q/0.jpg)](https://www.youtube.com/watch?v=msy5F0tQy0Q&ab_channel=BayronCabrera)
+
+Reference Image: 
+
+   <img src="documentation/images/ClockAlarmUI.png" width="500">
+
 
 ## Features
 
@@ -75,7 +84,7 @@ By following these connections, you should be able to interface the ESP32 with t
 
 1. **Clone the Repository**:
    ```sh
-   git clone <repository-url>
+   git clone git@github.com:bdcabreran/ESP32-IDF-LVGL.git
    cd <repository-directory>
    ```
 
@@ -169,8 +178,6 @@ Reference:
    ```sh
    idf.py monitor
    ```
-
-## Example Video and Images
 
 
 ## License
