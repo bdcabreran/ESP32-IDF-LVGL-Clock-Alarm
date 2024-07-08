@@ -9,11 +9,6 @@ set(inc
 )
 
 set(components
-    # "lvgl_esp32_drivers"
-    # "lvgl_touch"
-    # "lvgl_tft"
-    # "lvgl"
-    # "driver"
     )
 
 
