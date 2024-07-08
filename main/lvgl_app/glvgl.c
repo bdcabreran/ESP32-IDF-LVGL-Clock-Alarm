@@ -93,14 +93,14 @@ void Lvgl_display_month(Lvgl * const me, const char *const month) {
 
 void Lvgl_display_calendar_date(Lvgl* const me, uint8_t date, uint8_t month , uint32_t year)
 {
-    lv_label_set_text_fmt(me->date, "%d/%d/%d", date,month,year);
+    lv_label_set_text_fmt(me->date, "%d/%d/%ld", date,month,year);
 }
 void Lvgl_display_date(Lvgl * const me, uint8_t date) {
     lv_label_set_text_fmt(me->date, "%d",date);
 }
 
 void Lvgl_display_year(Lvgl * const me, uint32_t year) {
-    lv_label_set_text_fmt(me->year, "%d", year);
+    lv_label_set_text_fmt(me->year, "%ld", year);
 }
 
 void Lvgl_create_message_box(Lvgl* const me, const char* title, const char* msg, const char* opts[], bool close_btn)

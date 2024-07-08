@@ -1,0 +1,43 @@
+{
+  "name": "ESP-IDF Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "args": {
+      "IDF_CLONE_BRANCH_OR_TAG": "master",
+      "IDF_CLONE_SHALLOW": "1",
+      "IDF_CLONE_SHALLOW_DEPTH": "1",
+      "IDF_INSTALL_TARGETS": "all"
+    }
+  },
+
+  // Customizations for VSCode settings and recommended extensions
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "idf.espIdfPath": "/opt/esp/idf",
+        "idf.customExtraPaths": "",
+        "idf.pythonBinPath": "/opt/esp/python_env/idf5.4_py3.12_env/bin/python",
+        "idf.toolsPath": "/opt/esp",
+        "idf.gitPath": "/usr/bin/git"
+      },
+
+      "extensions": [
+        "ms-vscode.cpptools",
+        "espressif.esp-idf-extension",
+        "mhutchie.git-graph", // Visualize your Git repositories in graph format
+        "CoenraadS.bracket-pair-colorizer-2", // Colorize matching brackets, enhances code readability
+        "aaron-bond.better-comments", // Create more human-friendly comments in your code
+        "mhutchie.git-graph", // Visualize your Git repositories in graph format
+        "ms-vscode.cmake-tools" // Adds support for CMake projects in VS Code
+
+      ]
+    }
+  },
+  "remoteUser": "root",
+  "postCreateCommand": ". /opt/esp/idf/export.sh",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "runArgs": ["--privileged"]
+}

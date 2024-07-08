@@ -99,9 +99,9 @@ void ili9341_init(void)
 #endif
 	//Reset the display
 	gpio_set_level(ILI9341_RST, 0);
-	vTaskDelay(100 / portTICK_RATE_MS);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
 	gpio_set_level(ILI9341_RST, 1);
-	vTaskDelay(100 / portTICK_RATE_MS);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
 
 	ESP_LOGI(TAG, "Initialization.");
 
@@ -111,7 +111,7 @@ void ili9341_init(void)
 		ili9341_send_cmd(ili_init_cmds[cmd].cmd);
 		ili9341_send_data(ili_init_cmds[cmd].data, ili_init_cmds[cmd].databytes&0x1F);
 		if (ili_init_cmds[cmd].databytes & 0x80) {
-			vTaskDelay(100 / portTICK_RATE_MS);
+			vTaskDelay(100 / portTICK_PERIOD_MS);
 		}
 		cmd++;
 	}

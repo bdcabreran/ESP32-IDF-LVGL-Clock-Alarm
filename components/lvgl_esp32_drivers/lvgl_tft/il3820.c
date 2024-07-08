@@ -89,13 +89,13 @@ static bool il3820_partial = false;
 static void il3820_waitbusy( int wait_ms )
 {
     int i;
-    vTaskDelay( 10 / portTICK_RATE_MS); // 10ms delay
+    vTaskDelay( 10 / portTICK_PERIOD_MS); // 10ms delay
 	for( i=0; i<(wait_ms*10); i++ ){
 		if( gpio_get_level(IL3820_BUSY_PIN) != IL3820_BUSY_LEVEL ) {
             //ESP_LOGI( TAG, "busy %dms", i*10 );
             return;
         }
-		vTaskDelay(10 / portTICK_RATE_MS);
+		vTaskDelay(10 / portTICK_PERIOD_MS);
 	}
 	ESP_LOGE( TAG, "busy exceeded %dms", i*10 );
 }
@@ -288,9 +288,9 @@ void il3820_init( void )
 	gpio_set_direction(IL3820_BUSY_PIN,  GPIO_MODE_INPUT);
 
 	gpio_set_level( IL3820_RST_PIN, 0);
-	vTaskDelay( IL3820_RESET_DELAY / portTICK_RATE_MS );
+	vTaskDelay( IL3820_RESET_DELAY / portTICK_PERIOD_MS );
 	gpio_set_level( IL3820_RST_PIN, 1);
-	vTaskDelay( IL3820_RESET_DELAY / portTICK_RATE_MS );
+	vTaskDelay( IL3820_RESET_DELAY / portTICK_PERIOD_MS );
 
 	il3820_write_cmd(IL3820_CMD_SW_RESET, NULL, 0); //already hardware reset
 	il3820_waitbusy( IL3820_WAIT );

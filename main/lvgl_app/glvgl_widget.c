@@ -226,7 +226,7 @@ static void delete_dropdwn_list(Lvgl* lvgl_inst)
     Lvgl* const lvgl_inst = (Lvgl*)lv_event_get_user_data(e);
     delete_dropdwn_list(lvgl_inst);
     if (code == LV_EVENT_CLICKED) {
-        lv_obj_t* mbox1 = lv_msgbox_create(NULL, "About", "Clock version: 1.0\nBy FastBit EBA\nPowered by LVGL v8.3", NULL, true);
+        lv_obj_t* mbox1 = lv_msgbox_create(NULL, "About", "Clock version: 1.0\nPowered by LVGL v8.3", NULL, true);
         lv_obj_center(mbox1);
     }
 }
