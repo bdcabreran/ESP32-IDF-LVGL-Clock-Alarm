@@ -1,3 +1,54 @@
+
+#if 0
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_log.h"
+#include "driver/gpio.h"
+#include "esp_timer.h"
+
+#define LED_GPIO_PIN 2
+#define LV_TICK_PERIOD_MS 1
+
+static const char *TAG = "example";
+
+void lv_tick_task(void* arg) {
+    // Placeholder for LVGL tick handler
+    ESP_LOGI(TAG, "LVGL tick task called");
+}
+
+void blink_led(void* arg) {
+    gpio_set_level(LED_GPIO_PIN, 1);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    gpio_set_level(LED_GPIO_PIN, 0);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+}
+
+void app_main(void) {
+    // Initialize GPIO
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << LED_GPIO_PIN),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = 0,
+        .pull_down_en = 0,
+        .intr_type = GPIO_INTR_DISABLE
+    };
+    gpio_config(&io_conf);
+
+    // Timer for LVGL tick task
+    const esp_timer_create_args_t periodic_timer_args = {
+        .callback = &lv_tick_task,
+        .name = "periodic_gui"
+    };
+    esp_timer_handle_t periodic_timer;
+    ESP_ERROR_CHECK(esp_timer_create(&periodic_timer_args, &periodic_timer));
+    ESP_ERROR_CHECK(esp_timer_start_periodic(periodic_timer, LV_TICK_PERIOD_MS * 1000));
+
+    // Create a task to blink the LED
+    xTaskCreate(blink_led, "blink_led_task", 2048, NULL, 5, NULL);
+}
+#endif
+
+#if 1
 /* LVGL Example project
  * 
  * Basic project to test LVGL on ESP32 based projects.
@@ -19,6 +70,7 @@
 #include "freertos/semphr.h"
 #include "esp_system.h"
 #include "driver/gpio.h"
+#include "esp_timer.h"
 
 /* Littlevgl specific */
 #include "lvgl/lvgl.h"
@@ -142,3 +194,4 @@ void guiTask(void *pvParameter) {
 
     vTaskDelete(NULL);
 }
+#endif

@@ -1,41 +1,18 @@
 {
-    "C_Cpp.intelliSenseEngine": "Tag Parser",
-    "idf.adapterTargetName": "esp32",
-    "idf.customExtraPaths": "C:\\Espressif\\tools\\xtensa-esp-elf-gdb\\11.2_20220823\\xtensa-esp-elf-gdb\\bin;C:\\Espressif\\tools\\riscv32-esp-elf-gdb\\11.2_20220823\\riscv32-esp-elf-gdb\\bin;C:\\Espressif\\tools\\xtensa-esp32-elf\\esp-2021r2-patch5-8.4.0\\xtensa-esp32-elf\\bin;C:\\Espressif\\tools\\xtensa-esp32s2-elf\\esp-2021r2-patch5-8.4.0\\xtensa-esp32s2-elf\\bin;C:\\Espressif\\tools\\xtensa-esp32s3-elf\\esp-2021r2-patch5-8.4.0\\xtensa-esp32s3-elf\\bin;C:\\Espressif\\tools\\riscv32-esp-elf\\esp-2021r2-patch5-8.4.0\\riscv32-esp-elf\\bin;C:\\Espressif\\tools\\esp32ulp-elf\\2.35_20220830\\esp32ulp-elf\\bin;C:\\Espressif\\tools\\cmake\\3.23.1\\bin;C:\\Espressif\\tools\\openocd-esp32\\v0.11.0-esp32-20221026\\openocd-esp32\\bin;C:\\Espressif\\tools\\ninja\\1.10.2;C:\\Espressif\\tools\\idf-exe\\1.0.3;C:\\Espressif\\tools\\ccache\\4.3\\ccache-4.3-windows-64;C:\\Espressif\\tools\\dfu-util\\0.9\\dfu-util-0.9-win64",
-    "idf.customExtraVars": {
-        "OPENOCD_SCRIPTS": "C:\\Espressif\\tools\\openocd-esp32\\v0.11.0-esp32-20221026/openocd-esp32/share/openocd/scripts",
-        "IDF_CCACHE_ENABLE": "1"
-    },
-    "idf.espIdfPathWin": "C:/Espressif/frameworks/esp-idf-v4.4.4-3/",
-    "idf.espAdfPathWin": "C:\\Espressif\\frameworks\\esp-adf-2",
+    "idf.flashType": "UART",
+    "idf.port": "/dev/ttyUSB0",
+    "idf.adapterTargetName": "esp32", // Update this to the correct port for your device
     "idf.openOcdConfigs": [
         "board/esp32-wrover-kit-3.3v.cfg"
-    ],
-    "idf.portWin": "COM10",
-    "idf.pythonBinPathWin": "C:/Espressif/python_env/idf4.4_py3.8_env/Scripts/python.exe",
-    "idf.toolsPathWin": "C:\\Espressif",
+    ], 
+    "C_Cpp.default.configurationProvider": "espressif.idf",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
     "files.associations": {
-        "string.h": "c",
-        "stdint.h": "c",
-        "stdbool.h": "c",
-        "stdio.h": "c",
-        "esp_gap_ble_api.h": "c",
-        "uart.h": "c",
-        "esp_ibeacon_api.h": "c",
-        "semphr.h": "c",
+        "esp_chip_info.h": "c",
         "task.h": "c",
-        "esp_err.h": "c",
-        "esp_task_wdt.h": "c",
-        "assert.h": "c",
-        "cstdint": "c",
-        "esp_log.h": "c",
-        "queue.h": "c",
-        "main_fsm_manager.h": "c",
-        "certificates.h": "c",
-        "global_manager.h": "c",
-        "tile_manager.h": "c",
-        "lv_example_widgets.h": "c",
-        "clockalarmui.h": "c"
-    },
-    "idf.flashType": "UART"
+        "gpio.h": "c",
+        "esp_timer.h": "c",
+        "format": "c",
+        "semphr.h": "c"
+    }
 }

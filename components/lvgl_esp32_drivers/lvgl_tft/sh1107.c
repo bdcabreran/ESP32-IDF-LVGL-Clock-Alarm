@@ -97,9 +97,9 @@ void sh1107_init(void)
 
 	//Reset the display
 	gpio_set_level(SH1107_RST, 0);
-	vTaskDelay(100 / portTICK_RATE_MS);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
 	gpio_set_level(SH1107_RST, 1);
-	vTaskDelay(100 / portTICK_RATE_MS);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
 
 	//Send all the commands
 	uint16_t cmd = 0;
@@ -107,7 +107,7 @@ void sh1107_init(void)
 	    sh1107_send_cmd(init_cmds[cmd].cmd);
 	    sh1107_send_data(init_cmds[cmd].data, init_cmds[cmd].databytes&0x1F);
 	    if (init_cmds[cmd].databytes & 0x80) {
-		vTaskDelay(100 / portTICK_RATE_MS);
+		vTaskDelay(100 / portTICK_PERIOD_MS);
 	    }
 	    cmd++;
 	}
