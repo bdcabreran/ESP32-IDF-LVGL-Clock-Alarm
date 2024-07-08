@@ -1,10 +1,7 @@
-Here's a detailed README for your project:
 
----
+# ESP32 Clock Alarm with Touch Panel and 480x320 LCD using LVGL (ESP-IDF v5.4.0)
 
-# Clock Alarm Application with Touch Panel and LCD (480x320) on ESP-IDF v5.4.0
-
-## Overview
+## Overview    
 
 This project is a Clock Alarm Application designed for ESP32, featuring touch panel support and a ILI9488 480x320 LCD display. It is built using the ESP-IDF v5.4.0 framework and integrates LVGL (Light and Versatile Graphics Library) for GUI rendering. The project setup includes a Docker container with Visual Studio Code and necessary extensions for seamless development.
 
