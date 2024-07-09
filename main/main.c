@@ -144,4 +144,3 @@ void guiTask(void *pvParameter) {
 
     vTaskDelete(NULL);
 }
-#endif
